@@ -1,0 +1,149 @@
+.result-button{
+    height: 40px;
+    width: 40px;
+    /* display: flex;  
+    justify-content: center; */
+}
+
+.timeout-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeout{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    font-size: 1.9rem; 
+    height: 60px;
+    width: 130px;
+}
+
+/* .plus, .minus{
+    font-size: 1.5rem;
+} */
+
+#top-part{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.team-score {
+  width: 400px;
+  height: 300px;
+  /* border: 3px solid green; */
+  background-color: rgb(212, 212, 209);
+  padding: 5px;
+  margin: 20px;
+  text-align: center;
+}
+
+.game-time{
+    width: 520px;
+    height: 200px;
+    background-color: rgb(212, 212, 209);
+    padding: 5px;
+    margin: 20px;
+    text-align: center;
+}
+
+.break-time{
+    width: 420px;
+    height: 200px;
+    background-color: rgb(212, 212, 209);
+    padding: 5px;
+    margin: 20px;
+    text-align: center;
+}
+
+.result-commands{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.team-score{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title{
+    font-size: 2.25rem;
+    margin: 0px;
+}
+
+.digits{
+    font-family: digital;
+}
+
+.time{
+    font-size: 7rem;
+}
+
+.result{
+    font-size: 10rem;
+}
+
+/* .result-button{
+    height: 40px;
+    width: 40px;
+    padding-bottom: 5px;
+    display: flex;  
+    justify-content: center; 
+}*/
+
+.result.result-button{
+    font-size: 3rem;
+}
+
+.current-side{
+    font-size: 2.25rem;
+}
+
+.result-container{
+    display: flex;
+    justify-content: center;
+}
+
+.gametime-container, .breaktime-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gametime-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.big-time-button, .small-time-button{
+    width: 100px;
+    height: 25px;
+}
+
+.timer-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.two-dots{
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.timer-buttons{
+    margin: 3px;
+    width: 70px;
+}
+
+@font-face {
+    src: url(fonts/digital-7.ttf);
+    font-family: digital;
+}
