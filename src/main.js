@@ -118,85 +118,72 @@ let is60 = false;
 let aux60 = document.getElementById('60-seconds');
 let aux30 = document.getElementById('30-seconds');
 let aux10 = document.getElementById('10-seconds');
+// console.log(aux10)
+// aux10.currentTime = 0;
+//           aux10.play();
 // Timer Function
 function timerCycleBreak() {
-  let secondsInTimer = document.getElementById('seconds-break-top-half');
-  let minutesInTimer = document.getElementById('minutes-break-top-half');
+  let secondsInTimer = document.getElementById('break-top-half-seconds');
+  let minutesInTimer = document.getElementById('break-top-half-minutes');
   let sec = Number(secondsInTimer.textContent || 0);
   let min = Number(minutesInTimer.textContent || 0);
   if (stoptimeBreak == false) {
-    // if(isNaN(min)){
-    //   min = 0;
-    // }
-    // if (sec <= 0) {
-    //   sec = 0;
-    //   if (min <= 0) {
-    //     min = 0;
-    //     stoptimeBreak = true;
-    //   } else {
-    //     // stoptimeBreak = true;
-    //     min--;
-    //     sec = 60;
-    //     secondsInTimer.innerHTML = sec;
-    //     minutesInTimer.innerHTML = min;
-    //     // startBreakTopHalf();
-    //   }
-    // } else {
-      function sounds(){
-        if(min == 1 && sec <= 0 || sec === 60){
-          console.log('here');
+    
+    function sounds(){
+      if(min == 1 && sec <= 0 || sec === 60){
+        console.log('here');
 
-          if(!is60){
-            aux60.currentTime = 0;
-            aux60.play();
-            is60 = true; 
-          }
-          
-        }else if(min <= 0 && sec == 30){
-          console.log('ehere123');
+        if(!is60){
+          aux60.currentTime = 0;
+          aux60.play();
+          is60 = true; 
+        }
+        
+      }else if(min <= 0 && sec == 30){
+        console.log('ehere123');
 
-          if(!is60 && !is30){
-            aux30.currentTime = 0;
-            aux30.play();
-            is30 = true;
-          }
-        }else if(min <= 0 && sec == 10){
-          console.log('ehere');
-          if(!is60 && !is30 && !is10){
-            aux10.currentTime = 0;
-            aux10.play();
-            is10 = true;  
-          }
+        if(!is60 && !is30){
+          aux30.currentTime = 0;
+          aux30.play();
+          is30 = true;
+        }
+      }else if(min <= 0 && sec == 10){
+        console.log('ehere');
+        if(!is60 && !is30 && !is10){
+          aux10.currentTime = 0;
+          aux10.play();
+          is10 = true;  
         }
       }
-      sounds();
-      sec--;
-      sounds();
-      if (sec <= 0) {
-        sec = 0;
-        if (min <= 0) {
-           min = 0;
-          stoptimeBreak = true;
-          is10 = false;
-          is30 = false;
-          is60 = false;
-          startTimerTopHalf();
-        } else {
-          min--;
-          sec = 60;
-        }
+    }
+    sounds();
+    sec--;
+    sounds();
+    if (sec <= 0) {
+      sec = 0;
+      if (min <= 0) {
+          min = 0;
+        stoptimeBreak = true;
+        is10 = false;
+        is30 = false;
+        is60 = false;
+        startTimerTopHalf();
+      } else {
+        min--;
+        sec = 60;
       }
+    }
 
-      if (min < 10) {
-        min = '0' + min;
-      }
-      if (sec < 10) {
-        sec = '0' + sec;
-      }
+    if (min < 10) {
+      min = '0' + min;
+    }
+    if (sec < 10) {
+      sec = '0' + sec;
+    }
 
-      secondsInTimer.innerHTML = sec;
-      minutesInTimer.innerHTML = min;
-    // }
+    secondsInTimer.innerHTML = sec;
+    minutesInTimer.innerHTML = min;
+    
     setTimeout(timerCycleBreak, 1000);
   }
 }

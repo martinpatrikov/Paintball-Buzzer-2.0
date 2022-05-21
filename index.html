@@ -10,21 +10,26 @@
 
 <body>
   <!-- audio inputs -->
+  <!-- TODO audio files not served -->
   <div>
-    <audio id="game-finished" controls style="display:none">
+    <audio id="game-finished" preload="auto" controls>
       <source src="/Paintball Buzzer/Scoreboard/assets/sounds/gameFinished.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
-    <audio id="60-seconds" controls style="display:none">
+    <audio id="60-seconds" preload="auto" controls >
       <source src="/Paintball Buzzer/Scoreboard/assets/sounds/60secs.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
+    <!-- <audio id="60-seconds" preload="auto" controls >
+      <source src="/Paintball Buzzer/Scoreboard/assets/sounds/60secs.ogg" type="audio/ogg">
+      Your browser does not support the audio element.
+    </audio> -->
     <audio id="10-seconds" controls style="display:none">
-      <source src="/Paintball Buzzer/Scoreboard/assets/sounds/10secs.mp3" type="audio/mpeg">
+      <source src="/Paintball Buzzer/Scoreboard/assets/sounds/10secs.mp3" type="audio/mp3">
       Your browser does not support the audio element.
     </audio>
     <audio id="30-seconds" controls style="display:none">
-      <source src="/Paintball Buzzer/Scoreboard/assets/sounds/30secs.mp3" type="audio/mpeg">
+      <source src="/Paintball Buzzer/Scoreboard/assets/sounds/30secs.mp3" type="audio/mp3">
       Your browser does not support the audio element.
     </audio>
 
@@ -77,18 +82,18 @@
       <div class="break-time">
         <h4 class="title">Break Time</h1>
           <div class="breaktime-container">
-            <div class="minutes-break">
-              <button class="minutes small-time-button action" value="+" id="top"> + </button>
-              <div class="minutes top-half digits time top-half-minutes-break" id="minutes-break-top-half"> 01 </div>
-              <button class="minutes small-time-button action" value="-" id="top"> - </button>
+            <div class="minutes">
+              <button class="minutes small-time-button action" value="+" id="break-top"> + </button>
+              <div class="minutes top-half digits time top-half-minutes-break" id="break-top-half-minutes"> 01 </div>
+              <button class="minutes small-time-button action" value="-" id="break-top"> - </button>
             </div>
             <div class="digits two-dots">
               <h1>:</h1>
             </div>
-            <div class="seconds-break">
-              <button class="seconds small-time-button action" value="+" id="top"> + </button>
-              <div class="seconds top-half digits time top-half-seconds-break" id="seconds-break-top-half"> 05 </div>
-              <button class="seconds small-time-button action" value="-" id="top"> - </button>
+            <div class="seconds">
+              <button class="seconds small-time-button action" value="+" id="break-top"> + </button>
+              <div class="seconds top-half digits time top-half-seconds-break" id="break-top-half-seconds"> 05 </div>
+              <button class="seconds small-time-button action" value="-" id="break-top"> - </button>
             </div>
             <div class="gametime-buttons">
               <button class="timer-buttons" id="start-break-top-half">Start</button>
@@ -151,9 +156,9 @@
               <h1>:</h1>
             </div>
             <div class="seconds">
-              <button class="plus seconds big-time-button action" value="+" id="second"> + </button>
+              <button class="plus seconds big-time-button action" value="+" id="bottom"> + </button>
               <div class="seconds bottom-half digits time bottom-half-seconds" id="bottom-half-seconds"> 05 </div>
-              <button class="minus seconds big-time-button action" value="-" id="second"> - </button>
+              <button class="minus seconds big-time-button action" value="-" id="bottom"> - </button>
             </div>
             <div class="gametime-buttons">
               <button class="timer-buttons" id="start-bottom-half">
@@ -168,23 +173,23 @@
         <h4 class="title">Break Time</h1>
           <div class="breaktime-container">
             <div class="minutes">
-              <button class="plus minutes small-time-button" value="+" id="bottom"> + </button>
-              <div class="minutes bottom-half digits time bottom-half-minutes-break" id="minutes-break-bottom-half"> 01
+              <button class="plus minutes small-time-button action" value="+" id="break-bottom"> + </button>
+              <div class="minutes bottom-half digits time bottom-half-minutes-break" id="break-bottom-half-minutes"> 01
               </div>
-              <button class="minus minutes small-time-button" value="-" id="bottom"> - </button>
+              <button class="minus minutes small-time-button action" value="-" id="break-bottom"> - </button>
             </div>
             <div class="digits two-dots">
               <h1>:</h1>
             </div>
             <div class="seconds">
-              <button class="plus seconds small-time-button" value="+" id="second"> + </button>
-              <div class="seconds bottom-half digits time bottom-half-seconds-break" id="seconds-break-bottom-half"> 05
+              <button class="plus seconds small-time-button action" value="+" id="break-bottom"> + </button>
+              <div class="seconds bottom-half digits time bottom-half-seconds-break" id="break-bottom-half-seconds"> 05
               </div>
-              <button class="minus seconds small-time-button" value="-" id="second"> - </button>
+              <button class="minus seconds small-time-button action" value="-" id="break-bottom"> - </button>
             </div>
             <div class="gametime-buttons">
-              <button class="timer-buttons" id="start-break-top-half">Start</button>
-              <button class="timer-buttons" id="stop-break-top-half">Stop</button>
+              <button class="timer-buttons" id="start-break-bottom-half">Start</button>
+              <button class="timer-buttons" id="stop-break-bottom-half">Stop</button>
               <button class="timer-buttons">Master Reset</button>
             </div>
           </div>
