@@ -1,59 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Scoreboard</title>
-    <link rel="stylesheet" href="style.css" />
-    <script type="module" src = "./src/main.js" ></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js' ></script>
-  </head>
-  <body>
-    <!-- audio inputs -->
-    <div>
-      <audio id="game-finished" controls style="display:none">
-        <source src="/Paintball Buzzer/Scoreboard/assets/sounds/gameFinished.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-      <audio id="60-seconds" controls style="display:none">
-        <source src="/Paintball Buzzer/Scoreboard/assets/sounds/60secs.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-      <audio id="10-seconds" controls style="display:none">
-        <source src="/Paintball Buzzer/Scoreboard/assets/sounds/10secs.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-      <audio id="30-seconds" controls style="display:none">
-        <source src="/Paintball Buzzer/Scoreboard/assets/sounds/30secs.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
 
-    </div>
-    <div id="top-part">
-      <div class="first-team-container">
-        <div class="team-score">
-          <h1 class="title">TEAM A</h1>
-          <div class="result-container">
-            <div class="result first-team digits">00</div>
-            <div class="result-commands">
-              <button class="plus result result-button" id="first" value="+">+</button>
-              <button class="minus result result-button" id="first" value="-">-</button>
-            </div>
+<head>
+  <title>Scoreboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="./src/main.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
+</head>
+
+<body>
+  <!-- audio inputs -->
+  <div>
+    <audio id="game-finished" controls style="display:none">
+      <source src="/Paintball Buzzer/Scoreboard/assets/sounds/gameFinished.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="60-seconds" controls style="display:none">
+      <source src="/Paintball Buzzer/Scoreboard/assets/sounds/60secs.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="10-seconds" controls style="display:none">
+      <source src="/Paintball Buzzer/Scoreboard/assets/sounds/10secs.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="30-seconds" controls style="display:none">
+      <source src="/Paintball Buzzer/Scoreboard/assets/sounds/30secs.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+  </div>
+  <div id="top-part">
+    <div class="first-team-container">
+      <div class="team-score">
+        <h1 class="title">TEAM A</h1>
+        <div class="result-container">
+          <div class="result first-team digits">00</div>
+          <div class="result-commands">
+            <button class="plus result result-button" id="first" value="+">+</button>
+            <button class="minus result result-button" id="first" value="-">-</button>
           </div>
-          <div class="current-side">Left</div>
-        </div>        
-        <div class="timeout-container">
-          <button class="timeout">Timeout</button>
         </div>
+        <div class="current-side">Left</div>
       </div>
+      <div class="timeout-container">
+        <button class="timeout">Timeout</button>
+      </div>
+    </div>
 
 
-      <div class="timer-section">
-        <div class="game-time">
-          <h2 class="title">Game Time</h1>
+    <div class="timer-section">
+      <div class="game-time">
+        <h2 class="title">Game Time</h1>
           <div class="gametime-container">
             <div class="minutes">
               <button class="plus minutes big-time-button action" value="+" id="top">+</button>
               <div class="minutes top-half digits time top-half-minutes" id="top-half-minutes"> 05 </div>
-              <button class="minus minutes big-time-button action" value="-" id="top" > - </button>
+              <button class="minus minutes big-time-button action" value="-" id="top"> - </button>
             </div>
             <div class="digits two-dots">
               <h1>:</h1>
@@ -71,9 +73,9 @@
               <button class="timer-buttons">Master Reset</button>
             </div>
           </div>
-        </div>
-        <div class="break-time">
-          <h4 class="title">Break Time</h1>
+      </div>
+      <div class="break-time">
+        <h4 class="title">Break Time</h1>
           <div class="breaktime-container">
             <div class="minutes-break">
               <button class="minutes small-time-button action" value="+" id="top"> + </button>
@@ -86,7 +88,7 @@
             <div class="seconds-break">
               <button class="seconds small-time-button action" value="+" id="top"> + </button>
               <div class="seconds top-half digits time top-half-seconds-break" id="seconds-break-top-half"> 05 </div>
-              <button class="seconds small-time-button action" value="-" id="top" > - </button>
+              <button class="seconds small-time-button action" value="-" id="top"> - </button>
             </div>
             <div class="gametime-buttons">
               <button class="timer-buttons" id="start-break-top-half">Start</button>
@@ -94,56 +96,56 @@
               <button class="timer-buttons">Master Reset</button>
             </div>
           </div>
-        </div>
       </div>
-
-      <div class="first-team-container">
-        <div class="team-score">
-          <h1 class="title">TEAM B</h1>
-          <div class="result-container">
-            <div class="result second-team digits">00</div>
-            <div class="result-commands">
-              <button class="plus result result-button" id="second" value="+"> + </button>
-              <button class="minus result result-button" id="second" value="-"> - </button>
-            </div>
-          </div>
-          <div class="current-side">Right</div>
-        </div>
-        <div class="timeout-container">
-          <button class="timeout">Timeout</button>
-        </div>
-      </div>
-
-
     </div>
 
-    <div id="bottom-part">
-      <div class="third-team-container">
-        <div class="team-score">
-          <h1 class="title">TEAM C</h1>
-          <div class="result-container">
-            <div class="result third-team digits">00</div>
-            <div class="result-commands">
-              <button class="plus result result-button" id="third" value="+">+</button>
-              <button class="minus result result-button" id="third" value="-">-</button>
-            </div>
+    <div class="first-team-container">
+      <div class="team-score">
+        <h1 class="title">TEAM B</h1>
+        <div class="result-container">
+          <div class="result second-team digits">00</div>
+          <div class="result-commands">
+            <button class="plus result result-button" id="second" value="+"> + </button>
+            <button class="minus result result-button" id="second" value="-"> - </button>
           </div>
-          <div class="current-side">Left</div>
-        </div>        
-        <div class="timeout-container">
-          <button class="timeout">Timeout</button>
         </div>
+        <div class="current-side">Right</div>
       </div>
+      <div class="timeout-container">
+        <button class="timeout">Timeout</button>
+      </div>
+    </div>
 
 
-      <div class="timer-section">
-        <div class="game-time">
-          <h2 class="title">Game Time</h1>
+  </div>
+
+  <div id="bottom-part">
+    <div class="third-team-container">
+      <div class="team-score">
+        <h1 class="title">TEAM C</h1>
+        <div class="result-container">
+          <div class="result third-team digits">00</div>
+          <div class="result-commands">
+            <button class="plus result result-button" id="third" value="+">+</button>
+            <button class="minus result result-button" id="third" value="-">-</button>
+          </div>
+        </div>
+        <div class="current-side">Left</div>
+      </div>
+      <div class="timeout-container">
+        <button class="timeout">Timeout</button>
+      </div>
+    </div>
+
+
+    <div class="timer-section">
+      <div class="game-time">
+        <h2 class="title">Game Time</h1>
           <div class="gametime-container">
             <div class="minutes">
               <button class="plus minutes big-time-button action" value="+" id="bottom">+</button>
               <div class="minutes bottom-half digits time bottom-half-minutes" id="bottom-half-minutes"> 05 </div>
-              <button class="minus minutes big-time-button action" value="-" id="bottom" > - </button>
+              <button class="minus minutes big-time-button action" value="-" id="bottom"> - </button>
             </div>
             <div class="digits two-dots">
               <h1>:</h1>
@@ -161,13 +163,14 @@
               <button class="timer-buttons">Master Reset</button>
             </div>
           </div>
-        </div>
-        <div class="break-time">
-          <h4 class="title">Break Time</h1>
+      </div>
+      <div class="break-time">
+        <h4 class="title">Break Time</h1>
           <div class="breaktime-container">
             <div class="minutes">
               <button class="plus minutes small-time-button" value="+" id="bottom"> + </button>
-              <div class="minutes bottom-half digits time bottom-half-minutes-break" id="minutes-break-bottom-half"> 01 </div>
+              <div class="minutes bottom-half digits time bottom-half-minutes-break" id="minutes-break-bottom-half"> 01
+              </div>
               <button class="minus minutes small-time-button" value="-" id="bottom"> - </button>
             </div>
             <div class="digits two-dots">
@@ -175,8 +178,9 @@
             </div>
             <div class="seconds">
               <button class="plus seconds small-time-button" value="+" id="second"> + </button>
-              <div class="seconds bottom-half digits time bottom-half-seconds-break" id="seconds-break-bottom-half"> 05 </div>
-              <button class="minus seconds small-time-button" value="-" id="second" > - </button>
+              <div class="seconds bottom-half digits time bottom-half-seconds-break" id="seconds-break-bottom-half"> 05
+              </div>
+              <button class="minus seconds small-time-button" value="-" id="second"> - </button>
             </div>
             <div class="gametime-buttons">
               <button class="timer-buttons" id="start-break-top-half">Start</button>
@@ -184,27 +188,28 @@
               <button class="timer-buttons">Master Reset</button>
             </div>
           </div>
-        </div>
       </div>
-
-      <div class="fourth-team-container">
-        <div class="team-score">
-          <h1 class="title">TEAM D</h1>
-          <div class="result-container">
-            <div class="result fourth-team digits">00</div>
-            <div class="result-commands">
-              <button class="plus result result-button" id="fourth" value="+"> + </button>
-              <button class="minus result result-button" id="fourth" value="-"> - </button>
-            </div>
-          </div>
-          <div class="current-side">Right</div>
-        </div>
-        <div class="timeout-container">
-          <button class="timeout">Timeout</button>
-        </div>
-      </div>
-
-
     </div>
-  </body>
+
+    <div class="fourth-team-container">
+      <div class="team-score">
+        <h1 class="title">TEAM D</h1>
+        <div class="result-container">
+          <div class="result fourth-team digits">00</div>
+          <div class="result-commands">
+            <button class="plus result result-button" id="fourth" value="+"> + </button>
+            <button class="minus result result-button" id="fourth" value="-"> - </button>
+          </div>
+        </div>
+        <div class="current-side">Right</div>
+      </div>
+      <div class="timeout-container">
+        <button class="timeout">Timeout</button>
+      </div>
+    </div>
+
+
+  </div>
+</body>
+
 </html>

@@ -15,6 +15,7 @@ document.querySelectorAll('.result-commands').forEach(box => box.addEventListene
 document.querySelectorAll('.timer-section').forEach(box => box.addEventListener('click', plusMinusTime));
 document.getElementById('start-top-half').addEventListener('click', startTimerTopHalf);
 document.getElementById('start-break-top-half').addEventListener('click', startBreakTopHalf);
+document.getElementById('stop-break-top-half').addEventListener('click', stopBreakClock);
 document.getElementById('stop-top-half').addEventListener('click', stopClock);
   
 
@@ -121,32 +122,26 @@ let aux10 = document.getElementById('10-seconds');
 function timerCycleBreak() {
   let secondsInTimer = document.getElementById('seconds-break-top-half');
   let minutesInTimer = document.getElementById('minutes-break-top-half');
-  let sec = secondsInTimer.textContent || 0;
-  let min = minutesInTimer.textContent || 0;
+  let sec = Number(secondsInTimer.textContent || 0);
+  let min = Number(minutesInTimer.textContent || 0);
   if (stoptimeBreak == false) {
-    sec = parseInt(sec);
-    min = parseInt(min);
-    if(isNaN(min)){
-      min = 0;
-    }
-    if (sec <= 0) {
-      if(sec < 0){
-        sec = 0;
-      }
-      if (min <= 0) {
-        if(min < 0){
-          min = 0;
-        }
-        stoptimeBreak = true;
-      } else {
-        stoptimeBreak = true;
-        min--;
-        sec = 60;
-        secondsInTimer.innerHTML = sec;
-        minutesInTimer.innerHTML = min;
-        startBreakTopHalf();
-      }
-    } else {
+    // if(isNaN(min)){
+    //   min = 0;
+    // }
+    // if (sec <= 0) {
+    //   sec = 0;
+    //   if (min <= 0) {
+    //     min = 0;
+    //     stoptimeBreak = true;
+    //   } else {
+    //     // stoptimeBreak = true;
+    //     min--;
+    //     sec = 60;
+    //     secondsInTimer.innerHTML = sec;
+    //     minutesInTimer.innerHTML = min;
+    //     // startBreakTopHalf();
+    //   }
+    // } else {
       function sounds(){
         if(min == 1 && sec <= 0 || sec === 60){
           console.log('here');
@@ -178,21 +173,17 @@ function timerCycleBreak() {
       sec--;
       sounds();
       if (sec <= 0) {
-        if(sec < 0){
-          sec = 0;
-        }
+        sec = 0;
         if (min <= 0) {
+           min = 0;
           stoptimeBreak = true;
           is10 = false;
           is30 = false;
           is60 = false;
           startTimerTopHalf();
         } else {
-          if(min < 0){
-            min = 0;
-          }
           min--;
-          sec = 59;
+          sec = 60;
         }
       }
 
@@ -205,8 +196,8 @@ function timerCycleBreak() {
 
       secondsInTimer.innerHTML = sec;
       minutesInTimer.innerHTML = min;
-      setTimeout(timerCycleBreak, 1000);
-    }
+    // }
+    setTimeout(timerCycleBreak, 1000);
   }
 }
 
