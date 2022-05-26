@@ -8,41 +8,67 @@
 //     document.getElementById('sample').style.opacity = data+"%"; 
 
 // });
-
+import { plusMinusResult, plusMinusTime } from './plusMinus.js';
+import { getHalf } from './util.js';
 
 
 document.querySelectorAll('.result-commands').forEach(box => box.addEventListener('click', plusMinusResult));
 document.querySelectorAll('.timer-section').forEach(box => box.addEventListener('click', plusMinusTime));
-document.getElementById('start-top-half').addEventListener('click', startTimerTopHalf);
-document.getElementById('start-break-top-half').addEventListener('click', startBreakTopHalf);
-document.getElementById('stop-break-top-half').addEventListener('click', stopBreakClock);
-document.getElementById('stop-top-half').addEventListener('click', stopClock);
-  
 
-// Timeout Button
-// $('.timeout').click(function () {
-//   let minutesInTimer = document.getElementById('first-half-minutes-break');
-//   let min = document.getElementById('first-half-minutes-break').textContent || 0;
-  
-//   min = parseInt(min);
-//   min++;
-//   if (min < 10) {
-//         min = '0' + min;
-//   }
-//   minutesInTimer.innerHTML = min;
-//   auxPause();
-// });
+document.querySelectorAll('.timer-buttons').forEach(box => box.addEventListener('click', timerButtonsMiddlwear));
+document.querySelectorAll('.timeout').forEach(box => box.addEventListener('click', timeout));
 
-// Variables needed for GameTime for the top half
-let stoptime = true;
+function timeout(ev) {
+  const half = ev.target.className.includes('bottom') ? 'bottom' : 'top';
+  let minutesInTimer = document.getElementById(`break-${half}-half-minutes`);
+  let min = minutesInTimer.textContent || 0;
+  min++;
+  if (min < 10) {
+        min = '0' + min;
+  }
+  minutesInTimer.innerHTML = min;
+}
+  
+function timerButtonsMiddlwear(ev){
+  const id = ev.target.id;
+  if(id.includes('start')){
+    if(id.includes('break')){
+      startBreak(ev);
+    }else{
+      startTimer(ev);
+    }
+  }else{
+    if(id.includes('break')){
+      stopBreakClock(ev);
+    }else{
+      stopClock(ev);
+    }
+  }
+}
+
+// Variables needed for GameTime
+let stoptimeObj = {
+  top: true,
+  bottom: true
+}
+
+// Aux
+let stoptimeBreak = true;
+let is10 = false;
+let is30 = false;
+let is60 = false;
+let aux60 = document.getElementById('60-seconds');
+let aux30 = document.getElementById('30-seconds');
+let aux10 = document.getElementById('10-seconds');
+const gameFinished = document.getElementById('game-finished');
 
 // Timer Function
-function timerCycle() {
-  let secondsInTimer = document.getElementById('top-half-seconds');
-  let minutesInTimer = document.getElementById('top-half-minutes');
-  let sec = document.getElementById('top-half-seconds').textContent || 0;
-  let min = document.getElementById('top-half-minutes').textContent || 0;
-  if (stoptime == false) {
+function timerCycle(half) {
+  let secondsInTimer = document.getElementById(`${half}-half-seconds`);
+  let minutesInTimer = document.getElementById(`${half}-half-minutes`);
+  let sec = secondsInTimer.textContent || 0;
+  let min = minutesInTimer.textContent || 0;
+  if (stoptimeObj[half] == false) {
     if(isNaN(min)){
       min = 0;
     }
@@ -52,27 +78,25 @@ function timerCycle() {
       sec = 0;
       if (min <= 0) {
         min = 0;
-        stoptime = true;
-        let aux = document.getElementById('game-finished');
-        aux.currentTime = 0;
-        aux.play(); 
+        stoptimeObj[half] = true;
+        gameFinished.currentTime = 0;
+        gameFinished.play(); 
       } else {
         min--;
         sec = 60;
-        stoptime = true;
+        stoptimeObj[half] = true;
         secondsInTimer.innerHTML = sec;
         minutesInTimer.innerHTML = min;
-        startTimerTopHalf();
+        // startTimer(half);
       }
     } else {
       sec--; 
       if (sec <= 0) {
           sec = 0;
         if (min <= 0) {
-          stoptime = true;
-          let aux = document.getElementById('game-finished');
-          aux.currentTime = 0;
-          aux.play(); 
+          stoptimeObj[half] = true;
+          gameFinished.currentTime = 0;
+          gameFinished.play(); 
         } else {
           if(min < 0){
             min = 0;
@@ -91,43 +115,16 @@ function timerCycle() {
 
       secondsInTimer.innerHTML = sec;
       minutesInTimer.innerHTML = min;
-      setTimeout(timerCycle , 1000);
+      setTimeout(function() {timerCycle(half)} , 1000);
     }
   }
 }
-
-// Game Timer Button Functions
-function startTimerTopHalf() {
-  if (stoptime == true) {
-    stoptime = false;
-    timerCycle();
-  }
-}
-
-function stopClock() {
-  if (stoptime == false) {
-    stoptime = true;
-  }
-}
-
-// Break Timer
-let stoptimeBreak = true;
-let is10 = false;
-let is30 = false;
-let is60 = false;
-let aux60 = document.getElementById('60-seconds');
-let aux30 = document.getElementById('30-seconds');
-let aux10 = document.getElementById('10-seconds');
-// console.log(aux10)
-// aux10.currentTime = 0;
-//           aux10.play();
-// Timer Function
-function timerCycleBreak() {
-  let secondsInTimer = document.getElementById('break-top-half-seconds');
-  let minutesInTimer = document.getElementById('break-top-half-minutes');
+// Timer Function Break
+function timerCycleBreak(half) {
+  let secondsInTimer = document.getElementById(`break-${half}-half-seconds`);
+  let minutesInTimer = document.getElementById(`break-${half}-half-minutes`);
   let sec = Number(secondsInTimer.textContent || 0);
   let min = Number(minutesInTimer.textContent || 0);
-  console.log(min + ' ' + sec);
   if (stoptimeBreak == false) {
     
     function sounds(){
@@ -168,7 +165,7 @@ function timerCycleBreak() {
         is10 = false;
         is30 = false;
         is60 = false;
-        startTimerTopHalf();
+        startTimer(half);
       } else {
         min--;
         sec = 60;
@@ -185,26 +182,43 @@ function timerCycleBreak() {
     secondsInTimer.innerHTML = sec;
     minutesInTimer.innerHTML = min;
     
-    setTimeout(timerCycleBreak, 1000);
+    setTimeout(function() {timerCycleBreak(half)}, 1000);
   }
 }
+
+
 
 // Break Timer Button Functions
-function startBreakTopHalf() {
-  
+function startBreak(ev) {
+  const half = getHalf(ev);
   if (stoptimeBreak == true) {
     stoptimeBreak = false;
-    timerCycleBreak();
+    timerCycleBreak(half);
   }
 }
 
-function stopBreakClock() {
+function stopBreakClock(ev) {
   auxPause();
   if (stoptimeBreak == false) {
     stoptimeBreak = true;
   }
 }
 
+// Game Timer Button Functions
+function startTimer(ev) {
+  const half = getHalf(ev);
+  if (stoptimeObj[half] == true) {
+    stoptimeObj[half] = false;
+    timerCycle(half);
+  }
+}
+
+function stopClock(ev) {
+  const half = getHalf(ev);
+  if (stoptimeObj[half] == false) {
+    stoptimeObj[half] = true;
+  }
+}
 function auxPause(){
   aux10.pause();
   aux60.pause();
@@ -215,87 +229,6 @@ function auxPause(){
 }
 
 
-// Game Time Buttons For Adjusting Time
-// $('.big-time-button').click(function () {
-//   let firstGameTime = document.querySelector('.first-half-minutes');
-//   let secondGameTime = document.querySelector('.first-half-seconds');
-//   let seconds =  document.getElementById('first-half-seconds').textContent || 0;
-//   let minutes = document.getElementById('first-half-minutes').textContent || 0;
-//   let firedButtonTeam = $(this).attr('id');
-//   let firedButton = $(this).val();
-  
-//   plusMinus(firedButton, firedButtonTeam, firstGameTime, secondGameTime, minutes, seconds, 1, 10);
-// });
-// $('.small-time-button').click(function () {
-//   let firstGameTime = document.querySelector('.first-half-minutes-break');
-//   let secondGameTime = document.querySelector('.first-half-seconds-break');
-//   let seconds =
-//     document.getElementById('first-half-seconds-break').textContent || 0;
-//   let minutes =
-//     document.getElementById('first-half-minutes-break').textContent || 0;
-//   let firedButtonTeam = $(this).attr('id');
-//   let firedButton = $(this).val();
-//   auxPause();
-//   plusMinus(firedButton, firedButtonTeam, firstGameTime, secondGameTime, minutes, seconds, 1, 10);
-// });
-
-function plusMinusResult(ev) {
-  const button = ev.target;
-  let firedButton = button.value;
-  let team = document.querySelector(`.${button.id}-team`);
-  let teamCounter = Number(team.textContent || 0);
-  
-  if (firedButton === '-') {
-      if (teamCounter > 0) {
-        teamCounter -= 1;
-        if (teamCounter < 10 && teamCounter >= 0) {
-          team.innerHTML = '0' + teamCounter;
-        } else {
-          team.innerHTML = teamCounter;
-        }
-      }    
-  } else if (firedButton === '+') {
-    teamCounter += 1;
-        if (teamCounter < 10 && teamCounter >= 0) {
-          team.innerHTML = '0' + teamCounter;
-        } else {
-          team.innerHTML = teamCounter;
-        }
-  }
-}
-
-function plusMinusTime(ev) {
-  const button = ev.target;
-  if(!Array.from(button.classList).includes('action')){
-    return;
-  }
-  let firedButton = button.value;
-  const className = ev.target.parentNode.className;
-  let container = document.querySelector(`#${button.id}-half-${className}`);
-  let counter = Number(container.textContent || 0);
-  let increment = 1;
-  if(className.includes('seconds')){
-    increment = 10;
-  }
-  
-  if (firedButton === '-') {
-      if (counter >=  increment) {
-        counter -= increment;
-        if (counter < 10 && counter >= 0) {
-          container.innerHTML = '0' + counter;
-        } else {
-          container.innerHTML = counter;
-        }
-      }    
-  } else if (firedButton === '+') {
-    counter += increment;
-        if (counter < 10 && counter >= 0) {
-          container.innerHTML = '0' + counter;
-        } else {
-          container.innerHTML = counter;
-        }
-  }
-}
 
 
 // var http = require('http');
