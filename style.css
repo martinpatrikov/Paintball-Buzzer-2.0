@@ -150,6 +150,10 @@
     width: 70px;
 }
 
+.audio{
+    display: none;
+}
+
 @font-face {
     src: url(fonts/digital-7.ttf);
     font-family: digital;

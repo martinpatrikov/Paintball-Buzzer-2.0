@@ -127,10 +127,11 @@ function timerCycleBreak() {
   let minutesInTimer = document.getElementById('break-top-half-minutes');
   let sec = Number(secondsInTimer.textContent || 0);
   let min = Number(minutesInTimer.textContent || 0);
+  console.log(min + ' ' + sec);
   if (stoptimeBreak == false) {
     
     function sounds(){
-      if(min == 1 && sec <= 0 || sec === 60){
+      if(min == 1 && sec == 0 || sec === 60){
         console.log('here');
 
         if(!is60){
