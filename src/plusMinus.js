@@ -25,9 +25,9 @@ export function plusMinusResult(ev) {
 
 export function plusMinusTime(ev) {
     const button = ev.target;
-    if (!Array.from(button.classList).includes('action')) {
-        return;
-    }
+    // if (!Array.from(button.classList).includes('action')) {
+    //     return;
+    // }
     let firedButton = button.value;
     const className = ev.target.parentNode.className;
     let container = document.querySelector(`#${button.id}-half-${className}`);
