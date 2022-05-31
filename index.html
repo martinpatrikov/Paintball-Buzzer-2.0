@@ -16,7 +16,7 @@
       <source src="./assets/sounds/gameFinished.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
-    <audio id="60-seconds" class="audio" preload="auto" controls >
+    <audio id="60-seconds" class="audio" preload="auto" controls>
       <source src="./assets/sounds/60secs.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
@@ -41,8 +41,8 @@
         <div class="result-container">
           <div class="result first-team digits">00</div>
           <div class="result-commands">
-            <button class="plus result result-button" id="first" value="+">+</button>
-            <button class="minus result result-button" id="first" value="-">-</button>
+            <button class="result result-button" id="first" value="+">+</button>
+            <button class="result result-button" id="first" value="-">-</button>
           </div>
         </div>
         <div class="current-side">Left</div>
@@ -56,24 +56,26 @@
     <div class="timer-section">
       <div class="game-time">
         <h2 class="title">Game Time</h1>
-          <div class="gametime-container">
+          <div class="gametime-container" id="top-half">
+            <div class="presets">
+              <button class="preset action" id="top" value="300">5:00</button>
+              <button class="preset action" id="top" value="600">10:00</button>
+            </div>
             <div class="minutes">
-              <button class="plus minutes big-time-button action" value="+" id="top">+</button>
+              <button class="minutes action" value="+" id="top">+</button>
               <div class="minutes top-half digits time top-half-minutes" id="top-half-minutes"> 05 </div>
-              <button class="minus minutes big-time-button action" value="-" id="top"> - </button>
+              <button class="minutes action" value="-" id="top"> - </button>
             </div>
             <div class="digits two-dots">
               <h1>:</h1>
             </div>
             <div class="seconds">
-              <button class="plus seconds big-time-button action" value="+" id="top"> + </button>
+              <button class="seconds action" value="+" id="top"> + </button>
               <div class="seconds top-half digits time top-half-seconds" id="top-half-seconds"> 05 </div>
-              <button class="minus seconds big-time-button action" value="-" id="top"> - </button>
+              <button class="seconds action" value="-" id="top"> - </button>
             </div>
             <div class="gametime-buttons">
-              <button class="timer-buttons" id="start-top-half">
-                Start
-              </button>
+              <button class="timer-buttons" id="start-top-half">Start</button>
               <button class="timer-buttons" id="stop-top-half">Stop</button>
               <button class="timer-buttons">Master Reset</button>
             </div>
@@ -81,19 +83,19 @@
       </div>
       <div class="break-time">
         <h4 class="title">Break Time</h1>
-          <div class="breaktime-container">
+          <div class="breaktime-container" id="break-top-half">
             <div class="minutes">
-              <button class="minutes small-time-button action" value="+" id="break-top"> + </button>
+              <button class="minutes  action" value="+" id="break-top"> + </button>
               <div class="minutes top-half digits time top-half-minutes-break" id="break-top-half-minutes"> 01 </div>
-              <button class="minutes small-time-button action" value="-" id="break-top"> - </button>
+              <button class="minutes  action" value="-" id="break-top"> - </button>
             </div>
             <div class="digits two-dots">
               <h1>:</h1>
             </div>
             <div class="seconds">
-              <button class="seconds small-time-button action" value="+" id="break-top"> + </button>
+              <button class="seconds  action" value="+" id="break-top"> + </button>
               <div class="seconds top-half digits time top-half-seconds-break" id="break-top-half-seconds"> 05 </div>
-              <button class="seconds small-time-button action" value="-" id="break-top"> - </button>
+              <button class="seconds  action" value="-" id="break-top"> - </button>
             </div>
             <div class="gametime-buttons">
               <button class="timer-buttons" id="start-break-top-half">Start</button>
@@ -110,8 +112,8 @@
         <div class="result-container">
           <div class="result second-team digits">00</div>
           <div class="result-commands">
-            <button class="plus result result-button" id="second" value="+"> + </button>
-            <button class="minus result result-button" id="second" value="-"> - </button>
+            <button class="result result-button" id="second" value="+"> + </button>
+            <button class="result result-button" id="second" value="-"> - </button>
           </div>
         </div>
         <div class="current-side">Right</div>
@@ -131,8 +133,8 @@
         <div class="result-container">
           <div class="result third-team digits">00</div>
           <div class="result-commands">
-            <button class="plus result result-button" id="third" value="+">+</button>
-            <button class="minus result result-button" id="third" value="-">-</button>
+            <button class="result result-button" id="third" value="+">+</button>
+            <button class="result result-button" id="third" value="-">-</button>
           </div>
         </div>
         <div class="current-side">Left</div>
@@ -146,19 +148,19 @@
     <div class="timer-section">
       <div class="game-time">
         <h2 class="title">Game Time</h1>
-          <div class="gametime-container">
+          <div class="gametime-container"  id="bottom-half">
             <div class="minutes">
-              <button class="plus minutes big-time-button action" value="+" id="bottom">+</button>
+              <button class="minutes action" value="+" id="bottom">+</button>
               <div class="minutes bottom-half digits time bottom-half-minutes" id="bottom-half-minutes"> 05 </div>
-              <button class="minus minutes big-time-button action" value="-" id="bottom"> - </button>
+              <button class="minutes action" value="-" id="bottom"> - </button>
             </div>
             <div class="digits two-dots">
               <h1>:</h1>
             </div>
             <div class="seconds">
-              <button class="plus seconds big-time-button action" value="+" id="bottom"> + </button>
+              <button class="seconds action" value="+" id="bottom"> + </button>
               <div class="seconds bottom-half digits time bottom-half-seconds" id="bottom-half-seconds"> 05 </div>
-              <button class="minus seconds big-time-button action" value="-" id="bottom"> - </button>
+              <button class="seconds action" value="-" id="bottom"> - </button>
             </div>
             <div class="gametime-buttons">
               <button class="timer-buttons" id="start-bottom-half">
@@ -171,21 +173,21 @@
       </div>
       <div class="break-time">
         <h4 class="title">Break Time</h1>
-          <div class="breaktime-container">
+          <div class="breaktime-container" id="break-bottom-half">
             <div class="minutes">
-              <button class="plus minutes small-time-button action" value="+" id="break-bottom"> + </button>
+              <button class="minutes action" value="+" id="break-bottom"> + </button>
               <div class="minutes bottom-half digits time bottom-half-minutes-break" id="break-bottom-half-minutes"> 01
               </div>
-              <button class="minus minutes small-time-button action" value="-" id="break-bottom"> - </button>
+              <button class="minutes action" value="-" id="break-bottom"> - </button>
             </div>
             <div class="digits two-dots">
               <h1>:</h1>
             </div>
             <div class="seconds">
-              <button class="plus seconds small-time-button action" value="+" id="break-bottom"> + </button>
+              <button class="seconds  action" value="+" id="break-bottom"> + </button>
               <div class="seconds bottom-half digits time bottom-half-seconds-break" id="break-bottom-half-seconds"> 05
               </div>
-              <button class="minus seconds small-time-button action" value="-" id="break-bottom"> - </button>
+              <button class="seconds action" value="-" id="break-bottom"> - </button>
             </div>
             <div class="gametime-buttons">
               <button class="timer-buttons" id="start-break-bottom-half">Start</button>
@@ -202,8 +204,8 @@
         <div class="result-container">
           <div class="result fourth-team digits">00</div>
           <div class="result-commands">
-            <button class="plus result result-button" id="fourth" value="+"> + </button>
-            <button class="minus result result-button" id="fourth" value="-"> - </button>
+            <button class="result result-button" id="fourth" value="+"> + </button>
+            <button class="result result-button" id="fourth" value="-"> - </button>
           </div>
         </div>
         <div class="current-side">Right</div>

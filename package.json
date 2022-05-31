@@ -2,6 +2,13 @@
   "name": "basic-socket",
   "version": "0.0.1",
   "description": "Communication between Arduino and HTML/JavaScript",
+  "scripts": {
+    "start": "./node_modules/.bin/http-server -a localhost -p 8000 -c-1"
+  },
+  "author": {
+    "name": "Martin Patrikov",
+    "email": "mpatrikovjr@gmail.com"
+  },
   "dependencies": {
     "http-server": "^14.1.0",
     "jquery": "^3.6.0",

@@ -8,12 +8,13 @@
 //     document.getElementById('sample').style.opacity = data+"%"; 
 
 // });
+import { timerSection } from './middleware/timerSection.js';
 import { plusMinusResult, plusMinusTime } from './plusMinus.js';
-import { getHalf } from './util.js';
+import { addZeros, getHalf } from './util.js';
 
 
 document.querySelectorAll('.result-commands').forEach(box => box.addEventListener('click', plusMinusResult));
-document.querySelectorAll('.timer-section').forEach(box => box.addEventListener('click', plusMinusTime));
+document.querySelectorAll('.timer-section').forEach(box => box.addEventListener('click', timerSection));
 
 document.querySelectorAll('.timer-buttons').forEach(box => box.addEventListener('click', timerButtonsMiddlwear));
 document.querySelectorAll('.timeout').forEach(box => box.addEventListener('click', timeout));
@@ -53,7 +54,11 @@ let stoptimeObj = {
 }
 
 // Aux
-let stoptimeBreak = true;
+let stoptimeBreakObj = {
+  top: true,
+  bottom: true
+}
+// let stoptimeBreak = true;
 let is10 = false;
 let is30 = false;
 let is60 = false;
@@ -66,14 +71,13 @@ const gameFinished = document.getElementById('game-finished');
 function timerCycle(half) {
   let secondsInTimer = document.getElementById(`${half}-half-seconds`);
   let minutesInTimer = document.getElementById(`${half}-half-minutes`);
-  let sec = secondsInTimer.textContent || 0;
-  let min = minutesInTimer.textContent || 0;
+  let sec = Number(secondsInTimer.textContent || 0);
+  let min = Number(minutesInTimer.textContent || 0);
   if (stoptimeObj[half] == false) {
     if(isNaN(min)){
       min = 0;
     }
-    sec = parseInt(sec);
-    min = parseInt(min);
+    sec--; 
     if (sec <= 0) {
       sec = 0;
       if (min <= 0) {
@@ -84,52 +88,24 @@ function timerCycle(half) {
       } else {
         min--;
         sec = 60;
-        stoptimeObj[half] = true;
-        secondsInTimer.innerHTML = sec;
-        minutesInTimer.innerHTML = min;
-        // startTimer(half);
       }
-    } else {
-      sec--; 
-      if (sec <= 0) {
-          sec = 0;
-        if (min <= 0) {
-          stoptimeObj[half] = true;
-          gameFinished.currentTime = 0;
-          gameFinished.play(); 
-        } else {
-          if(min < 0){
-            min = 0;
-          }
-          min--;
-          sec = 59;
-        }
-      }
-
-      if (min < 10) {
-        min = '0' + min;
-      }
-      if (sec < 10) {
-        sec = '0' + sec;
-      }
-
-      secondsInTimer.innerHTML = sec;
-      minutesInTimer.innerHTML = min;
-      setTimeout(function() {timerCycle(half)} , 1000);
     }
+      addZeros(secondsInTimer, minutesInTimer, min, sec);
+      setTimeout(function() {timerCycle(half)} , 1000);
   }
 }
+
 // Timer Function Break
-function timerCycleBreak(half) {
+function timerCycleBreak(half, time = 90) {
   let secondsInTimer = document.getElementById(`break-${half}-half-seconds`);
   let minutesInTimer = document.getElementById(`break-${half}-half-minutes`);
   let sec = Number(secondsInTimer.textContent || 0);
   let min = Number(minutesInTimer.textContent || 0);
-  if (stoptimeBreak == false) {
+  if (stoptimeBreakObj[half] == false) {
     
     function sounds(){
       if(min == 1 && sec == 0 || sec === 60){
-        console.log('here');
+        console.log('bra here');
 
         if(!is60){
           aux60.currentTime = 0;
@@ -160,27 +136,21 @@ function timerCycleBreak(half) {
     if (sec <= 0) {
       sec = 0;
       if (min <= 0) {
-          min = 0;
-        stoptimeBreak = true;
+        min = 0;
+        stoptimeBreakObj[half] = true;
         is10 = false;
         is30 = false;
         is60 = false;
         startTimer(half);
+        min = Math.floor(time/60);
+        sec = time - (min * 60);
       } else {
         min--;
         sec = 60;
       }
     }
 
-    if (min < 10) {
-      min = '0' + min;
-    }
-    if (sec < 10) {
-      sec = '0' + sec;
-    }
-
-    secondsInTimer.innerHTML = sec;
-    minutesInTimer.innerHTML = min;
+    addZeros(secondsInTimer, minutesInTimer, min, sec);
     
     setTimeout(function() {timerCycleBreak(half)}, 1000);
   }

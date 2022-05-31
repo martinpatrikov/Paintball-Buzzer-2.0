@@ -127,7 +127,7 @@
     justify-content: center;
 }
 
-.big-time-button, .small-time-button{
+button.seconds, button.minutes{
     width: 100px;
     height: 25px;
 }
@@ -152,6 +152,17 @@
 
 .audio{
     display: none;
+}
+
+.presets{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.preset{
+    margin: 3px;
+    padding: 5px;
 }
 
 @font-face {
