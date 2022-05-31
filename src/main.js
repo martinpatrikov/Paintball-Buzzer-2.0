@@ -16,7 +16,7 @@ import { addZeros, getHalf } from './util.js';
 document.querySelectorAll('.result-commands').forEach(box => box.addEventListener('click', plusMinusResult));
 document.querySelectorAll('.timer-section').forEach(box => box.addEventListener('click', timerSection));
 
-document.querySelectorAll('.timer-buttons').forEach(box => box.addEventListener('click', timerButtonsMiddlwear));
+document.querySelectorAll('.timer-buttons').forEach(box => box.addEventListener('click', timerButtonsMiddlewear));
 document.querySelectorAll('.timeout').forEach(box => box.addEventListener('click', timeout));
 
 function timeout(ev) {
@@ -30,7 +30,7 @@ function timeout(ev) {
   minutesInTimer.innerHTML = min;
 }
   
-function timerButtonsMiddlwear(ev){
+function timerButtonsMiddlewear(ev){
   const id = ev.target.id;
   if(id.includes('start')){
     if(id.includes('break')){
@@ -53,12 +53,12 @@ let stoptimeObj = {
   bottom: true
 }
 
-// Aux
+
 let stoptimeBreakObj = {
   top: true,
   bottom: true
 }
-// let stoptimeBreak = true;
+// Aux
 let is10 = false;
 let is30 = false;
 let is60 = false;
@@ -102,6 +102,29 @@ function timerCycleBreak(half, time = 90) {
   let sec = Number(secondsInTimer.textContent || 0);
   let min = Number(minutesInTimer.textContent || 0);
   if (stoptimeBreakObj[half] == false) {
+    sounds();
+    sec--;
+    sounds();
+    if (sec <= 0) {
+      sec = 0;
+      if (min <= 0) {
+        min = 0;
+        stoptimeBreakObj[half] = true;
+        is10 = false;
+        is30 = false;
+        is60 = false;
+        startTimer(half);
+        min = Math.floor(time/60);
+        sec = time - (min * 60);
+      } else {
+        min--;
+        sec = 60;
+      }
+    }
+
+    addZeros(secondsInTimer, minutesInTimer, min, sec);
+    
+    setTimeout(function() {timerCycleBreak(half)}, 1000);
     
     function sounds(){
       if(min == 1 && sec == 0 || sec === 60){
@@ -130,29 +153,6 @@ function timerCycleBreak(half, time = 90) {
         }
       }
     }
-    sounds();
-    sec--;
-    sounds();
-    if (sec <= 0) {
-      sec = 0;
-      if (min <= 0) {
-        min = 0;
-        stoptimeBreakObj[half] = true;
-        is10 = false;
-        is30 = false;
-        is60 = false;
-        startTimer(half);
-        min = Math.floor(time/60);
-        sec = time - (min * 60);
-      } else {
-        min--;
-        sec = 60;
-      }
-    }
-
-    addZeros(secondsInTimer, minutesInTimer, min, sec);
-    
-    setTimeout(function() {timerCycleBreak(half)}, 1000);
   }
 }
 
@@ -161,16 +161,16 @@ function timerCycleBreak(half, time = 90) {
 // Break Timer Button Functions
 function startBreak(ev) {
   const half = getHalf(ev);
-  if (stoptimeBreak == true) {
-    stoptimeBreak = false;
+  if (stoptimeBreakObj[half] == true) {
+    stoptimeBreakObj[half] = false;
     timerCycleBreak(half);
   }
 }
 
 function stopBreakClock(ev) {
   auxPause();
-  if (stoptimeBreak == false) {
-    stoptimeBreak = true;
+  if (stoptimeBreakObj[half] == false) {
+    stoptimeBreakObj[half] = true;
   }
 }
 
