@@ -156,8 +156,13 @@ button.seconds, button.minutes{
 
 .presets{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    margin: 5px;
+}
 
+.first-col, .second-col{
+    display: flex;
+    flex-direction: column;
 }
 
 .preset{

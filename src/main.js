@@ -67,6 +67,11 @@ let aux30 = document.getElementById('30-seconds');
 let aux10 = document.getElementById('10-seconds');
 const gameFinished = document.getElementById('game-finished');
 
+function findActive(place){
+  const preset = document.getElementById(place).querySelector('.presets');
+  return preset.querySelector('.active') || 90;
+}
+
 // Timer Function
 function timerCycle(half) {
   let secondsInTimer = document.getElementById(`${half}-half-seconds`);
@@ -96,7 +101,8 @@ function timerCycle(half) {
 }
 
 // Timer Function Break
-function timerCycleBreak(half, time = 90) {
+function timerCycleBreak(half) {
+  const time = findActive(`break-${half}-half`);
   let secondsInTimer = document.getElementById(`break-${half}-half-seconds`);
   let minutesInTimer = document.getElementById(`break-${half}-half-minutes`);
   let sec = Number(secondsInTimer.textContent || 0);
@@ -127,7 +133,7 @@ function timerCycleBreak(half, time = 90) {
     setTimeout(function() {timerCycleBreak(half)}, 1000);
     
     function sounds(){
-      if(min == 1 && sec == 0 || sec === 60){
+      if(min == 1 && sec == 0 || sec === 60 && min === 0){
         console.log('bra here');
 
         if(!is60){
@@ -168,6 +174,7 @@ function startBreak(ev) {
 }
 
 function stopBreakClock(ev) {
+  const half = getHalf(ev);
   auxPause();
   if (stoptimeBreakObj[half] == false) {
     stoptimeBreakObj[half] = true;

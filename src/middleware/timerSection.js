@@ -9,7 +9,8 @@ export function timerSection(ev) {
     }
     if (classes.includes('preset')){
         let time = button.value;
-        const target = button.parentNode.parentNode.id;
+        button.classList.add('active');
+        const target = button.parentNode.parentNode.parentNode.id;
         let secondsInTimer = document.getElementById(`${target}-seconds`);
         let minutesInTimer = document.getElementById(`${target}-minutes`);
 
