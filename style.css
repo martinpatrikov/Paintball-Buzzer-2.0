@@ -1,21 +1,25 @@
-.result-button{
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
+
+body{
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+.result-button {
     height: 40px;
     width: 40px;
     /* display: flex;  
     justify-content: center; */
 }
 
-.timeout-container{
+.timeout-container {
     display: flex;
     justify-content: center;
     align-items: center;
     justify-content: center;
 }
 
-.timeout{
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 500;
-    font-size: 1.9rem; 
+.timeout {
+    font-size: 1.9rem;
     height: 60px;
     width: 130px;
 }
@@ -24,13 +28,13 @@
     font-size: 1.5rem;
 } */
 
-#top-part{
+#top-part {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-#bottom-part{
+#bottom-part {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
@@ -38,16 +42,16 @@
 }
 
 .team-score {
-  width: 400px;
-  height: 300px;
-  /* border: 3px solid green; */
-  background-color: rgb(212, 212, 209);
-  padding: 5px;
-  margin: 20px;
-  text-align: center;
+    width: 400px;
+    height: 300px;
+    /* border: 3px solid green; */
+    background-color: rgb(212, 212, 209);
+    padding: 5px;
+    margin: 20px;
+    text-align: center;
 }
 
-.game-time{
+.game-time {
     width: 520px;
     height: 190px;
     background-color: rgb(212, 212, 209);
@@ -56,7 +60,7 @@
     text-align: center;
 }
 
-.break-time{
+.break-time {
     width: 420px;
     height: 190px;
     background-color: rgb(212, 212, 209);
@@ -65,32 +69,32 @@
     text-align: center;
 }
 
-.result-commands{
+.result-commands {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
-.team-score{
+.team-score {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.title{
+.title {
     font-size: 2.25rem;
     margin: 0px;
 }
 
-.digits{
+.digits {
     font-family: digital;
 }
 
-.time{
+.time {
     font-size: 6.4rem;
 }
 
-.result{
+.result {
     font-size: 10rem;
 }
 
@@ -102,70 +106,73 @@
     justify-content: center; 
 }*/
 
-.result.result-button{
+.result.result-button {
     font-size: 3rem;
 }
 
-.current-side{
-    font-size: 2.25rem;
+.current-side {
+    font-size: 1.75rem;
 }
 
-.result-container{
+.result-container {
     display: flex;
     justify-content: center;
 }
 
-.gametime-container, .breaktime-container{
+.gametime-container,
+.breaktime-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.gametime-buttons{
+.gametime-buttons {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-button.seconds, button.minutes{
+button.seconds,
+button.minutes {
     width: 100px;
     height: 25px;
 }
 
-.timer-section{
+.timer-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.two-dots{
+.two-dots {
     display: flex;
     justify-content: center;
     font-size: 2rem;
 }
 
-.timer-buttons{
+.timer-buttons {
     margin: 3px;
     width: 70px;
 }
 
-.audio{
+.audio {
     display: none;
 }
 
-.presets{
+.presets {
     display: flex;
     flex-direction: row;
     margin: 5px;
 }
 
-.first-col, .second-col{
+.first-col,
+.second-col {
     display: flex;
     flex-direction: column;
 }
 
-.preset{
+.preset {
     margin: 3px;
     padding: 5px;
 }
@@ -173,4 +180,10 @@ button.seconds, button.minutes{
 @font-face {
     src: url(fonts/digital-7.ttf);
     font-family: digital;
+}
+
+
+.active{
+    border-width: 1px;
+    background-color: #797979;
 }

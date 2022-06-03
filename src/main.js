@@ -66,10 +66,11 @@ let aux60 = document.getElementById('60-seconds');
 let aux30 = document.getElementById('30-seconds');
 let aux10 = document.getElementById('10-seconds');
 const gameFinished = document.getElementById('game-finished');
+const baseSound = document.getElementById('base');
 
 function findActive(place){
   const preset = document.getElementById(place).querySelector('.presets');
-  return preset.querySelector('.active') || 90;
+  return Number(preset.querySelector('.active').value) || 90;
 }
 
 // Timer Function
@@ -191,6 +192,8 @@ function startTimer(ev) {
 }
 
 function stopClock(ev) {
+  baseSound.currentTime = 0;
+  baseSound.play();
   const half = getHalf(ev);
   if (stoptimeObj[half] == false) {
     stoptimeObj[half] = true;
