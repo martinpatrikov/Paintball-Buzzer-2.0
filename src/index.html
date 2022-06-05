@@ -3,9 +3,9 @@
 
 <head>
   <title>Scoreboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <script type="module" src="./src/main.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
+  <link rel="stylesheet" href="./style.css" />
+  <script src='./socket.io.min.js'></script>
+  <script type="module" src="./main.js"></script>
 </head>
 
 <body>
@@ -13,23 +13,23 @@
   <!-- TODO audio files not served -->
   <div>
     <audio id="game-finished" class="audio" preload="auto" controls>
-      <source src="./assets/sounds/gameFinished.mp3" type="audio/mpeg">
+      <source src="/assets/sounds/gameFinished.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
     <audio id="60-seconds" class="audio" preload="auto" controls>
-      <source src="./assets/sounds/60secs.mp3" type="audio/mpeg">
+      <source src="/assets/sounds/60secs.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
     <audio id="base" class="audio" preload="auto" controls>
-      <source src="./assets/sounds/base.mp3" type="audio/mpeg">
+      <source src="/assets/sounds/base.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
     <audio id="10-seconds" class="audio" preload="auto" controls>
-      <source src="./assets/sounds/10secs.mp3" type="audio/mpeg">
+      <source src="/assets/sounds/10secs.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
     <audio id="30-seconds" class="audio" preload="auto" controls>
-      <source src="./assets/sounds/30secs.mp3" type="audio/mpeg">
+      <source src="/assets/sounds/30secs.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
 
@@ -65,7 +65,7 @@
               </div>
               <div class="second-col">
                 <button class="preset action" id="top" value="600">10:00</button>
-                <button class="preset custom action" id="top" value="600"> Custom </button>
+                <button class="preset custom active action" id="top" value="305"> Custom </button>
               </div>
             </div>
             <div class="minutes">
@@ -99,7 +99,7 @@
               </div>
               <div class="second-col">
                 <button class="preset action" id="top" value="30">0:30</button>
-                <button class="preset custom action" id="top" value="600"> Custom </button>
+                <button class="preset custom active action" id="top" value="65"> Custom </button>
               </div>
             </div>
             <div class="minutes">
@@ -175,7 +175,7 @@
               </div>
               <div class="second-col">
                 <button class="preset action" id="top" value="600">10:00</button>
-                <button class="preset custom action" id="top"> Custom </button>
+                <button class="preset custom active action" id="top" value="305"> Custom </button>
               </div>
             </div>
             <div class="minutes">
@@ -211,7 +211,7 @@
               </div>
               <div class="second-col">
                 <button class="preset action" id="top" value="30">0:30</button>
-                <button class="preset custom action" id="top" value="600"> Custom </button>
+                <button class="preset custom active action" id="top" value="65"> Custom </button>
               </div>
             </div>
             <div class="minutes">

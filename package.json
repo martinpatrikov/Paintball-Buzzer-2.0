@@ -1,20 +1,17 @@
 {
-  "name": "basic-socket",
-  "version": "0.0.1",
-  "description": "Communication between Arduino and HTML/JavaScript",
-  "scripts": {
-    "start": "./node_modules/.bin/http-server -a localhost -p 8000 -c-1"
-  },
-  "author": {
-    "name": "Martin Patrikov",
-    "email": "mpatrikovjr@gmail.com"
-  },
-  "dependencies": {
-    "http-server": "^14.1.0",
-    "jquery": "^3.6.0",
-    "jsdom": "^19.0.0",
-    "requirejs": "^2.3.6",
-    "serialport": "^9.0.1",
-    "socket.io": "^2.0.4"
-  }
+	"name": "basic-socket",
+	"version": "0.0.1",
+	"description": "Communication between Arduino and HTML/JavaScript",
+	"scripts": {
+		"start": "nodemon server.js"
+	},
+	"author": {
+		"name": "Martin Patrikov",
+		"email": "mpatrikovjr@gmail.com"
+	},
+	"dependencies": {
+		"express": "^4.18.1",
+		"nodemon": "^2.0.16",
+		"socket.io": "^4.5.1"
+	}
 }

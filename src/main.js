@@ -2,21 +2,40 @@
 // var socket = io();
 
 // socket.on('data', function(data) {
-    
+
 //     console.log(data);
-    
+
 //     document.getElementById('sample').style.opacity = data+"%"; 
 
 // });
-import { timerSection } from './middleware/timerSection.js';
-import { plusMinusResult, plusMinusTime } from './plusMinus.js';
-import { addZeros, getHalf } from './util.js';
+import {
+  timerSection
+} from './middleware/timerSection.js';
+import {
+  plusMinusResult,
+  plusMinusTime
+} from './plusMinus.js';
+import {
+  addZeros,
+  getHalf
+} from './util.js';
+
+const socket = io();
+
+socket.on("btn", data => {
+  let activeHalf = 'bottom';
+  if (!stoptimeObj.top) {
+    activeHalf = 'top';
+  }
+  console.log(activeHalf);
+  stopClock(activeHalf);
+});
 
 
 document.querySelectorAll('.result-commands').forEach(box => box.addEventListener('click', plusMinusResult));
 document.querySelectorAll('.timer-section').forEach(box => box.addEventListener('click', timerSection));
 
-document.querySelectorAll('.timer-buttons').forEach(box => box.addEventListener('click', timerButtonsMiddlewear));
+document.querySelectorAll('.timer-buttons').forEach(box => box.addEventListener('click', timerButtonsMiddleware));
 document.querySelectorAll('.timeout').forEach(box => box.addEventListener('click', timeout));
 
 function timeout(ev) {
@@ -25,23 +44,23 @@ function timeout(ev) {
   let min = minutesInTimer.textContent || 0;
   min++;
   if (min < 10) {
-        min = '0' + min;
+    min = '0' + min;
   }
   minutesInTimer.innerHTML = min;
 }
-  
-function timerButtonsMiddlewear(ev){
+
+function timerButtonsMiddleware(ev) {
   const id = ev.target.id;
-  if(id.includes('start')){
-    if(id.includes('break')){
+  if (id.includes('start')) {
+    if (id.includes('break')) {
       startBreak(ev);
-    }else{
+    } else {
       startTimer(ev);
     }
-  }else{
-    if(id.includes('break')){
+  } else {
+    if (id.includes('break')) {
       stopBreakClock(ev);
-    }else{
+    } else {
       stopClock(ev);
     }
   }
@@ -68,7 +87,7 @@ let aux10 = document.getElementById('10-seconds');
 const gameFinished = document.getElementById('game-finished');
 const baseSound = document.getElementById('base');
 
-function findActive(place){
+function findActive(place) {
   const preset = document.getElementById(place).querySelector('.presets');
   return Number(preset.querySelector('.active').value) || 90;
 }
@@ -80,24 +99,26 @@ function timerCycle(half) {
   let sec = Number(secondsInTimer.textContent || 0);
   let min = Number(minutesInTimer.textContent || 0);
   if (stoptimeObj[half] == false) {
-    if(isNaN(min)){
+    if (isNaN(min)) {
       min = 0;
     }
-    sec--; 
+    sec--;
     if (sec <= 0) {
       sec = 0;
       if (min <= 0) {
         min = 0;
         stoptimeObj[half] = true;
         gameFinished.currentTime = 0;
-        gameFinished.play(); 
+        gameFinished.play();
       } else {
         min--;
         sec = 60;
       }
     }
-      addZeros(secondsInTimer, minutesInTimer, min, sec);
-      setTimeout(function() {timerCycle(half)} , 1000);
+    addZeros(secondsInTimer, minutesInTimer, min, sec);
+    setTimeout(function () {
+      timerCycle(half)
+    }, 1000);
   }
 }
 
@@ -121,7 +142,7 @@ function timerCycleBreak(half) {
         is30 = false;
         is60 = false;
         startTimer(half);
-        min = Math.floor(time/60);
+        min = Math.floor(time / 60);
         sec = time - (min * 60);
       } else {
         min--;
@@ -130,33 +151,35 @@ function timerCycleBreak(half) {
     }
 
     addZeros(secondsInTimer, minutesInTimer, min, sec);
-    
-    setTimeout(function() {timerCycleBreak(half)}, 1000);
-    
-    function sounds(){
-      if(min == 1 && sec == 0 || sec === 60 && min === 0){
+
+    setTimeout(function () {
+      timerCycleBreak(half)
+    }, 1000);
+
+    function sounds() {
+      if (min == 1 && sec == 0 || sec === 60 && min === 0) {
         console.log('bra here');
 
-        if(!is60){
+        if (!is60) {
           aux60.currentTime = 0;
           aux60.play();
-          is60 = true; 
+          is60 = true;
         }
-        
-      }else if(min <= 0 && sec == 30){
+
+      } else if (min <= 0 && sec == 30) {
         console.log('ehere123');
 
-        if(!is60 && !is30){
+        if (!is60 && !is30) {
           aux30.currentTime = 0;
           aux30.play();
           is30 = true;
         }
-      }else if(min <= 0 && sec == 10){
+      } else if (min <= 0 && sec == 10) {
         console.log('ehere');
-        if(!is60 && !is30 && !is10){
+        if (!is60 && !is30 && !is10) {
           aux10.currentTime = 0;
           aux10.play();
-          is10 = true;  
+          is10 = true;
         }
       }
     }
@@ -199,7 +222,8 @@ function stopClock(ev) {
     stoptimeObj[half] = true;
   }
 }
-function auxPause(){
+
+function auxPause() {
   aux10.pause();
   aux60.pause();
   aux30.pause();
@@ -240,18 +264,17 @@ function auxPause(){
 // var io = require('socket.io').listen(app);
 
 // io.on('connection', function(socket) {
-    
+
 //     console.log('Node is listening to port');
-    
+
 // });
 
 // parser.on('data', function(data) {
-    
+
 //     console.log('Received data from port: ' + data);
-    
+
 //     io.emit('data', data);
-    
+
 // });
 
 // app.listen(3000);
-
